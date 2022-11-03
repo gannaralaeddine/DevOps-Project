@@ -10,14 +10,16 @@ import java.util.List;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class ProduitServiceTest {
+public class ProduitServiceTest
+{
 
     @Autowired
     IProduitService ps;
 
     @Test
     @Order(1)
-    public void testRetrieveAllUsers() {
+    public void testRetrieveAllProducts()
+    {
         List<Produit> listProduits = ps.retrieveAllProduits();
         Assertions.assertEquals(0, listProduits.size());
     }

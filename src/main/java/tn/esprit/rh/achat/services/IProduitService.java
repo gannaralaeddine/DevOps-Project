@@ -4,8 +4,8 @@ import tn.esprit.rh.achat.entities.Produit;
 
 import java.util.List;
 
-public interface IProduitService {
-
+public interface IProduitService
+{
 	List<Produit> retrieveAllProduits();
 
 	Produit addProduit(Produit p);
