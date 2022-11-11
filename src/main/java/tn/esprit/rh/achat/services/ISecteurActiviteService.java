@@ -1,8 +1,8 @@
 package tn.esprit.rh.achat.services;
 
-import java.util.List;
-
 import tn.esprit.rh.achat.entities.SecteurActivite;
+
+import java.util.List;
 
 public interface ISecteurActiviteService {
 

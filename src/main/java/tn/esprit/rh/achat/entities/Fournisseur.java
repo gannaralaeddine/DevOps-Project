@@ -2,7 +2,6 @@ package tn.esprit.rh.achat.entities;
 
 import java.io.Serializable;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,9 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,14 +34,16 @@ public class Fournisseur implements Serializable {
 	private String code;
 	private String libelle;
 	@Enumerated(EnumType.STRING)
-	private CategorieFournisseur categorieFournisseur;
-	@OneToMany(mappedBy = "fournisseur")
+	private CategorieFournisseur  categorieFournisseur;
+	@OneToMany(mappedBy="fournisseur")
 	@JsonIgnore
 	private Set<Facture> factures;
-	@ManyToMany
-	@JsonIgnore
-	private Set<SecteurActivite> secteurActivites;
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private DetailFournisseur detailFournisseur;
+    @ManyToMany
+    @JsonIgnore
+    private Set<SecteurActivite> secteurActivites;
+    @OneToOne(cascade= CascadeType.ALL,fetch=FetchType.EAGER)
+    private DetailFournisseur detailFournisseur;
+    
 
+	
 }

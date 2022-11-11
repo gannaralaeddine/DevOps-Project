@@ -1,10 +1,11 @@
 package tn.esprit.rh.achat.services;
 
-import java.util.List;
-
 import tn.esprit.rh.achat.entities.Produit;
 
-public interface IProduitService {
+import java.util.List;
+
+public interface IProduitService
+{
 	List<Produit> retrieveAllProduits();
 
 	Produit addProduit(Produit p);

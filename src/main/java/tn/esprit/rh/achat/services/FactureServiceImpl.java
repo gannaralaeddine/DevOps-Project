@@ -1,27 +1,15 @@
 package tn.esprit.rh.achat.services;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tn.esprit.rh.achat.entities.*;
+import tn.esprit.rh.achat.repositories.*;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import lombok.extern.slf4j.Slf4j;
-import tn.esprit.rh.achat.entities.DetailFacture;
-import tn.esprit.rh.achat.entities.Facture;
-import tn.esprit.rh.achat.entities.Fournisseur;
-import tn.esprit.rh.achat.entities.Operateur;
-import tn.esprit.rh.achat.entities.Produit;
-import tn.esprit.rh.achat.repositories.DetailFactureRepository;
-import tn.esprit.rh.achat.repositories.FactureRepository;
-import tn.esprit.rh.achat.repositories.FournisseurRepository;
-import tn.esprit.rh.achat.repositories.OperateurRepository;
-import tn.esprit.rh.achat.repositories.ProduitRepository;
 
 @Service
 @Slf4j
@@ -38,22 +26,23 @@ public class FactureServiceImpl implements IFactureService {
 	FournisseurRepository fournisseurRepository;
 	@Autowired
 	ProduitRepository produitRepository;
-	@Autowired
-	ReglementServiceImpl reglementService;
-
+    @Autowired
+    ReglementServiceImpl reglementService;
+	
 	@Override
 	public List<Facture> retrieveAllFactures() {
-		List<Facture> factures = factureRepository.findAll();
+		List<Facture> factures = (List<Facture>) factureRepository.findAll();
 		for (Facture facture : factures) {
-			// log.info(" facture : " + facture);
+			log.info(" facture : " + facture);
 		}
 		return factures;
 	}
 
-	@Override
+	
 	public Facture addFacture(Facture f) {
 		return factureRepository.save(f);
 	}
+
 
 	private Facture addDetailsFacture(Facture f, Set<DetailFacture> detailsFacture) {
 		float montantFacture = 0;
@@ -113,10 +102,11 @@ public class FactureServiceImpl implements IFactureService {
 
 	@Override
 	public float pourcentageRecouvrement(Date startDate, Date endDate) {
-		float totalFacturesEntreDeuxDates = factureRepository.getTotalFacturesEntreDeuxDates(startDate, endDate);
-		float totalRecouvrementEntreDeuxDates = reglementService.getChiffreAffaireEntreDeuxDate(startDate, endDate);
-		float pourcentage = (totalRecouvrementEntreDeuxDates / totalFacturesEntreDeuxDates) * 100;
+		float totalFacturesEntreDeuxDates = factureRepository.getTotalFacturesEntreDeuxDates(startDate,endDate);
+		float totalRecouvrementEntreDeuxDates =reglementService.getChiffreAffaireEntreDeuxDate(startDate,endDate);
+		float pourcentage=(totalRecouvrementEntreDeuxDates/totalFacturesEntreDeuxDates)*100;
 		return pourcentage;
 	}
+	
 
 }
