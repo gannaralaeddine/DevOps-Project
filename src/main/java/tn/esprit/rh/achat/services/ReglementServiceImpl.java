@@ -1,13 +1,14 @@
 package tn.esprit.rh.achat.services;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import tn.esprit.rh.achat.entities.Reglement;
 import tn.esprit.rh.achat.repositories.FactureRepository;
 import tn.esprit.rh.achat.repositories.ReglementRepository;
-
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class ReglementServiceImpl implements IReglementService {
@@ -16,6 +17,7 @@ public class ReglementServiceImpl implements IReglementService {
 	FactureRepository factureRepository;
 	@Autowired
 	ReglementRepository reglementRepository;
+
 	@Override
 	public List<Reglement> retrieveAllReglements() {
 		return (List<Reglement>) reglementRepository.findAll();
@@ -23,7 +25,7 @@ public class ReglementServiceImpl implements IReglementService {
 
 	@Override
 	public Reglement addReglement(Reglement r) {
-        reglementRepository.save(r);
+		reglementRepository.save(r);
 		return r;
 	}
 
@@ -37,12 +39,11 @@ public class ReglementServiceImpl implements IReglementService {
 	public List<Reglement> retrieveReglementByFacture(Long idFacture) {
 		return reglementRepository.retrieveReglementByFacture(idFacture);
 
-
 	}
 
 	@Override
 	public float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate) {
-		return reglementRepository.getChiffreAffaireEntreDeuxDate( startDate, endDate);
+		return reglementRepository.getChiffreAffaireEntreDeuxDate(startDate, endDate);
 	}
 
 }

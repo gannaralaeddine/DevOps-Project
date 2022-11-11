@@ -1,9 +1,8 @@
 package tn.esprit.rh.achat.services;
 
-import tn.esprit.rh.achat.entities.CategorieProduit;
-
 import java.util.List;
 
+import tn.esprit.rh.achat.entities.CategorieProduit;
 
 public interface ICategorieProduitService {
 

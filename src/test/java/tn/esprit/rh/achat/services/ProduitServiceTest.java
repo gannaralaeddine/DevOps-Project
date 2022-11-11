@@ -1,28 +1,29 @@
 package tn.esprit.rh.achat.services;
 
-import org.junit.jupiter.api.*;
+import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tn.esprit.rh.achat.entities.Produit;
-import tn.esprit.rh.achat.services.IProduitService;
 
-import java.util.List;
+import tn.esprit.rh.achat.entities.Produit;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class ProduitServiceTest
-{
+public class ProduitServiceTest {
 
-    @Autowired
-    IProduitService ps;
+	@Autowired
+	IProduitService ps;
 
-    @Test
-    @Order(1)
-    public void testRetrieveAllProducts()
-    {
-        List<Produit> listProduits = ps.retrieveAllProduits();
-        Assertions.assertEquals(0, listProduits.size());
-    }
-
+	@Test
+	@Order(1)
+	public void testRetrieveAllProducts() {
+		List<Produit> listProduits = ps.retrieveAllProduits();
+		Assertions.assertEquals(0, listProduits.size());
+	}
 
 }

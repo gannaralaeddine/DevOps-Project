@@ -1,16 +1,18 @@
 package tn.esprit.rh.achat.services;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import lombok.extern.slf4j.Slf4j;
 import tn.esprit.rh.achat.entities.Produit;
 import tn.esprit.rh.achat.entities.Stock;
 import tn.esprit.rh.achat.repositories.CategorieProduitRepository;
 import tn.esprit.rh.achat.repositories.ProduitRepository;
 import tn.esprit.rh.achat.repositories.StockRepository;
-
-import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @Slf4j
@@ -25,20 +27,19 @@ public class ProduitServiceImpl implements IProduitService {
 
 	@Override
 	public List<Produit> retrieveAllProduits() {
-		List<Produit> produits = (List<Produit>) produitRepository.findAll();
+		List<Produit> produits = produitRepository.findAll();
 		for (Produit produit : produits) {
-			log.info(" Produit : " + produit);
+			// log.info(" Produit : " + produit);
 		}
 		return produits;
 	}
 
+	@Override
 	@Transactional
 	public Produit addProduit(Produit p) {
 		produitRepository.save(p);
 		return p;
 	}
-
-	
 
 	@Override
 	public void deleteProduit(Long produitId) {
@@ -53,7 +54,7 @@ public class ProduitServiceImpl implements IProduitService {
 	@Override
 	public Produit retrieveProduit(Long produitId) {
 		Produit produit = produitRepository.findById(produitId).orElse(null);
-		log.info("produit :" + produit);
+		// log.info("produit :" + produit);
 		return produit;
 	}
 
@@ -65,6 +66,5 @@ public class ProduitServiceImpl implements IProduitService {
 		produitRepository.save(produit);
 
 	}
-
 
 }
