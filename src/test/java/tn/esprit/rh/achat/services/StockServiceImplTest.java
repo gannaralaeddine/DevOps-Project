@@ -9,8 +9,7 @@ import tn.esprit.rh.achat.entities.Stock;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,5 +28,23 @@ public class StockServiceImplTest
         stockService.deleteStock(savedStock.getIdStock());
     }
 
+    @Test
+    public void testAddStockOptimized() {
 
+        Stock s = new Stock("stock test",10,100);
+        Stock savedStock= stockService.addStock(s);
+        assertNotNull(savedStock.getIdStock());
+        assertSame(10, savedStock.getQte());
+        assertTrue(savedStock.getQteMin()>0);
+        stockService.deleteStock(savedStock.getIdStock());
+
+    }
+
+    @Test
+    public void testDeleteStock() {
+        Stock s = new Stock("stock test",30,60);
+        Stock savedStock= stockService.addStock(s);
+        stockService.deleteStock(savedStock.getIdStock());
+        assertNull(stockService.retrieveStock(savedStock.getIdStock()));
+    }
 }
