@@ -54,7 +54,7 @@ public class OperateurServiceImpTest {
         f.setIdOperateur(2L);
 
 
-        os.adduodateOperateur(f);
+        os.addOperateur(f);
         verify(or, times(1)).save(f);
         System.out.println(f);
         log.info("add ==>"+ f.toString());
@@ -98,7 +98,7 @@ public class OperateurServiceImpTest {
         when(or.save(f)).thenReturn(f);
 
         assertNotNull(f);
-        assertEquals(f, os.adduodateOperateur(f));
+        assertEquals(f, os.addOperateur(f));
         log.info("update ==>"+ f.toString());
     }
 }
