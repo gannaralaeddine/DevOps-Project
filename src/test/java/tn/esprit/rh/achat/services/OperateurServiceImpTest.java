@@ -1,5 +1,6 @@
-
 package tn.esprit.rh.achat.services;
+
+
 
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -30,10 +31,10 @@ import tn.esprit.rh.achat.services.OperateurRepository;
 @Slf4j
 public class OperateurServiceImpTest {
 
-	
+
     @Mock
     OperateurRepository or;
-    
+
     @InjectMocks
     OperateurServiceImpl os;
 
@@ -42,16 +43,16 @@ public class OperateurServiceImpTest {
         Operateur f = new Operateur(1L,"aziz","test","pwd");
 
         when(or.findById(1L)).thenReturn(Optional.of(f));
-       Operateur Operateur= os.retrieveOperateur((long) 1);
+        Operateur Operateur= os.retrieveOperateur((long) 1);
         Assertions.assertNotNull(Operateur);
         log.info("get ==>"+ Operateur.toString());
     }
     @Test
     public void addOperateurTest(){
-    	
-		Operateur f = new Operateur(1L,"aziz","test","pwd");
+
+        Operateur f = new Operateur(1L,"aziz","test","pwd");
         f.setIdOperateur(2L);
-       
+
 
         os.adduodateOperateur(f);
         verify(or, times(1)).save(f);
@@ -81,7 +82,7 @@ public class OperateurServiceImpTest {
 
     @Test
     public void deleteFournisseurTest() {
-		Operateur f = new Operateur(1L,"aziz","test","pwd");
+        Operateur f = new Operateur(1L,"aziz","test","pwd");
 
         or.save(f);
         os.deleteOperateur(f.getIdOperateur());
@@ -93,9 +94,9 @@ public class OperateurServiceImpTest {
 
     @Test
     public void updateFournisseurTest() {
-		Operateur f = new Operateur(1L,"aziz","test","pwd");
+        Operateur f = new Operateur(1L,"aziz","test","pwd");
         when(or.save(f)).thenReturn(f);
-       
+
         assertNotNull(f);
         assertEquals(f, os.adduodateOperateur(f));
         log.info("update ==>"+ f.toString());
