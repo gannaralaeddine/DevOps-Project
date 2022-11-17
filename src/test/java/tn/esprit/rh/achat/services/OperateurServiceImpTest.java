@@ -81,7 +81,7 @@ public class OperateurServiceImpTest {
     }
 
     @Test
-    public void deleteFournisseurTest() {
+    public void deleteOperateurTest() {
         Operateur f = new Operateur(1L,"aziz","test","pwd");
 
         or.save(f);
@@ -93,7 +93,7 @@ public class OperateurServiceImpTest {
 
 
     @Test
-    public void updateFournisseurTest() {
+    public void updateOperateurTest() {
         Operateur f = new Operateur(1L,"aziz","test","pwd");
         when(or.save(f)).thenReturn(f);
 
