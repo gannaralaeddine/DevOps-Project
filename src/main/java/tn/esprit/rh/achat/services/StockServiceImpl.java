@@ -17,35 +17,36 @@ public class StockServiceImpl implements IStockService {
 	@Autowired
 	StockRepository stockRepository;
 
-
 	@Override
 	public List<Stock> retrieveAllStocks() {
 		return stockRepository.findAll();
 	}
 
 	@Override
-	public Stock addStock(Stock s) {
+	public Stock addStock(Stock s)
+	{
 
 		log.info("In method addStock");
 		return stockRepository.save(s);
-		
 	}
 
 	@Override
-	public void deleteStock(Long stockId) {
+	public void deleteStock(Long stockId)
+	{
 		log.info("In method deleteStock");
 		stockRepository.deleteById(stockId);
-
 	}
 
 	@Override
-	public Stock updateStock(Stock s) {
+	public Stock updateStock(Stock s)
+	{
 		log.info("In method updateStock");
 		return stockRepository.save(s);
 	}
 
 	@Override
-	public Stock retrieveStock(Long stockId) {
+	public Stock retrieveStock(Long stockId)
+	{
 		long start = System.currentTimeMillis();
 		log.info("In method retrieveStock");
 		Stock stock = stockRepository.findById(stockId).orElse(null);
@@ -57,7 +58,8 @@ public class StockServiceImpl implements IStockService {
 	}
 
 	@Override
-	public String retrieveStatusStock() {
+	public String retrieveStatusStock()
+	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		Date now = new Date();
 		String msgDate = sdf.format(now);
@@ -69,7 +71,6 @@ public class StockServiceImpl implements IStockService {
 					+ stocksEnRouge.get(i).getLibelleStock() + " a une quantité de " + stocksEnRouge.get(i).getQte()
 					+ " inférieur à la quantité minimale a ne pas dépasser de " + stocksEnRouge.get(i).getQteMin()
 					+ newLine;
-
 		}
 		log.info(finalMessage);
 		return finalMessage;
