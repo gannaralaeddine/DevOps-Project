@@ -10,7 +10,7 @@ import java.util.List;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class ProduitServiceTest
+class ProduitServiceTest
 {
 
     @Autowired
@@ -18,7 +18,7 @@ public class ProduitServiceTest
 
     @Test
     @Order(1)
-    public void testRetrieveAllProducts()
+    void testRetrieveAllProducts()
     {
         List<Produit> listProduits = ps.retrieveAllProduits();
         Assertions.assertEquals(0, listProduits.size());
