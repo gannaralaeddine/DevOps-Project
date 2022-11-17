@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Clone'){
+            steps {
+                gi branch: 'Stock-Management'
+                git "https://github.com/gannaralaeddine/DevOps-Project.git";
+            }
+        }
+
+        stage('MVN Clean'){
+            steps {
+                echo 'Clean'
+                sh 'mvn clean'
+            }
+        }
+
+        stage('Compiling') {
+            steps {
+                echo 'Compiling'
+                sh 'mvn compile'
+            }
+        }
+
+        stage('Mockito / JUnit') {
+            steps {
+                echo 'Hello World'
+                //sh test
+            }
+        }
+
+        stage('SonarQube') {
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar';
+            }
+        }
+
+        stage('Nexus') {
+            steps {
+                echo 'Nexus'
+                sh 'mvn deploy -DskipTests'
+            }
+        }
+
+        stage('build images') {
+            steps {
+
+               sh 'docker build -t gannaralaeddine/devops .'
+            }
+        }
+    }
+}
