@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 import tn.esprit.rh.achat.entities.Operateur;
-import tn.esprit.rh.achat.services.OperateurRepository;
+import tn.esprit.rh.achat.repositories.OperateurRepository;
 
 
 @RunWith(SpringRunner.class)
