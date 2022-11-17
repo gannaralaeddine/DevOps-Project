@@ -51,6 +51,7 @@ public class FactureServiceImpl implements IFactureService {
 
 			Produit produit = produitRepository.findById(detail.getProduit().getIdProduit()).orElse(null);
 
+			assert produit != null;
 			float prixTotalDetail = detail.getQteCommandee() * produit.getPrix();
 
 			float montantRemiseDetail = (prixTotalDetail * detail.getPourcentageRemise()) / 100;
