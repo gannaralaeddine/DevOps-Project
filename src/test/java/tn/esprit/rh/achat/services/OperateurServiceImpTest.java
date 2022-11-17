@@ -40,7 +40,7 @@ public class OperateurServiceImpTest {
 
     @Test
     public void retrieveOperateurTest(){
-        Operateur f = new Operateur(1L,"aziz","test","pwd");
+        Operateur f = new Operateur(1L,"mokhtar","test","pwd");
 
         when(or.findById(1L)).thenReturn(Optional.of(f));
         Operateur Operateur= os.retrieveOperateur((long) 1);
@@ -50,7 +50,7 @@ public class OperateurServiceImpTest {
     @Test
     public void addOperateurTest(){
 
-        Operateur f = new Operateur(1L,"aziz","test","pwd");
+        Operateur f = new Operateur(1L,"mokhtar","test","pwd");
         f.setIdOperateur(2L);
 
 
@@ -66,9 +66,9 @@ public class OperateurServiceImpTest {
         List<Operateur> Lf = new ArrayList<Operateur>() {
 
             {
-                add(new Operateur(1L,"aziz","test","pwd"));
-                add(new Operateur(1L,"aziz","test","pwd"));
-                add(new Operateur(1L,"aziz","test","pwd"));
+                add(new Operateur(1L,"mokhtar","test","pwd"));
+                add(new Operateur(1L,"mokhtar","test","pwd"));
+                add(new Operateur(1L,"mokhtar","test","pwd"));
             }};
 
 
@@ -82,7 +82,7 @@ public class OperateurServiceImpTest {
 
     @Test
     public void deleteOperateurTest() {
-        Operateur f = new Operateur(1L,"aziz","test","pwd");
+        Operateur f = new Operateur(1L,"mokhtar","test","pwd");
 
         or.save(f);
         os.deleteOperateur(f.getIdOperateur());
@@ -94,7 +94,7 @@ public class OperateurServiceImpTest {
 
     @Test
     public void updateOperateurTest() {
-        Operateur f = new Operateur(1L,"aziz","test","pwd");
+        Operateur f = new Operateur(1L,"mokhtar","test","pwd");
         when(or.save(f)).thenReturn(f);
 
         assertNotNull(f);
