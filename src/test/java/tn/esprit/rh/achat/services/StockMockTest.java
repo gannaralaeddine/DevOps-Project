@@ -20,7 +20,7 @@ import static org.mockito.Mockito.times;
 
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
-public class StockMock
+public class StockMockTest
 {
     @Mock
     StockRepository stockRepository;
