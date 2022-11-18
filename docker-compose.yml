@@ -15,7 +15,7 @@ services:
   app_spring:
     image : docker.io/alaeddinegannar/devops
     depends_on:
-      - mysqldatabase
+      - mysqldb
     restart: on-failure
     ports:
       - 8089:8089
