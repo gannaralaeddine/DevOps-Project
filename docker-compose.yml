@@ -35,6 +35,8 @@ services:
       - .m2:/root/.m2
     stdin_open: true
     tty: true
+    links:
+      - mysqldb
 #  app1:
 #    container_name: dockerfile_angular
 #
@@ -47,6 +49,6 @@ services:
 #    restart: always
 #    depends_on:
 #      - app
-volumes:
-  db:
+#volumes:
+#  db:
 #  crud-tuto-front:
