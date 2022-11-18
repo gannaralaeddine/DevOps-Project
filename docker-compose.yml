@@ -26,7 +26,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqladmin:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-      MYSQL_HOST: mysqladmin
+      MYSQL_HOST: mysqldb
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: root
       MYSQL_PASSWORD: root
