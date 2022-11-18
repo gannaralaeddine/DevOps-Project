@@ -2,31 +2,29 @@ pipeline {
     agent any
 
     stages {
-        stage('Git Clone'){
+        stage('Git Checkout'){
             steps {
-                git branch: 'Stock-Management'
-                git "https://github.com/gannaralaeddine/DevOps-Project.git";
+                git branch: 'Stock-Management',
+                url: "https://github.com/gannaralaeddine/DevOps-Project.git";
             }
         }
 
         stage('MVN Clean'){
             steps {
-                echo 'Clean'
                 sh 'mvn clean'
             }
         }
 
         stage('Compiling') {
             steps {
-                echo 'Compiling'
                 sh 'mvn compile'
             }
         }
 
         stage('Mockito / JUnit') {
             steps {
-                echo 'Hello World'
-                //sh test
+                echo 'hello'
+                //sh 'mvn test'
             }
         }
 
@@ -38,22 +36,42 @@ pipeline {
 
         stage('Nexus') {
             steps {
-                echo 'Nexus'
                 sh 'mvn deploy -DskipTests'
             }
         }
-
-        stage('build images') {
+/*
+        stage('Build Docker image') {
             steps {
-
-               sh 'docker build -t gannaralaeddine/devops .'
+                echo 'hello'
+                sh 'docker build -t alaeddinegannar/devops .'
             }
         }
 
-        stage ('Deploy our image'){
+        stage ('Deploy on DockerHub'){
             steps{
-                sh 'sudo docker login -u alaeddinegannar -p ichigobankai125';
-                sh 'sudo docker push gannaralaeddine/devops'
+                echo 'deploy'
+                sh 'sudo docker login -u alaeddinegannar -p dckr_pat_b-RQvyy6nHEE9LSofhZfnmI2Y4o';
+                sh 'sudo docker push alaeddinegannar/devops'
+            }
+        }
+*/
+
+        stage('push to dockerhub') {
+            steps{
+                withCredentials([string(credentialsId: 'alaeddinegannar', variable: 'dockerhub')]) {
+                    sh "docker login -u alaeddinegannar -p ${dockerhub}"
+
+                }
+                sh'docker push alaeddinegannar/devops'
+
+
+            }
+        }
+
+        stage ('Run Container'){
+            steps{
+
+                sh 'docker-compose up -d'
             }
         }
     }
