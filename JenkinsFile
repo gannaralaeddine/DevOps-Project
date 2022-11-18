@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git Clone'){
             steps {
-                gi branch: 'Stock-Management'
+                git branch: 'Stock-Management'
                 git "https://github.com/gannaralaeddine/DevOps-Project.git";
             }
         }
@@ -47,6 +47,13 @@ pipeline {
             steps {
 
                sh 'docker build -t gannaralaeddine/devops .'
+            }
+        }
+
+        stage ('Deploy our image'){
+            steps{
+                sh 'sudo docker login -u alaeddinegannar -p ichigobankai125';
+                sh 'sudo docker push gannaralaeddine/devops'
             }
         }
     }
