@@ -49,6 +49,6 @@ services:
 #    restart: always
 #    depends_on:
 #      - app
-#volumes:
-#  db:
+volumes:
+  db:
 #  crud-tuto-front:
