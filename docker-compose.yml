@@ -5,8 +5,11 @@ services:
     image: mysql:latest
     restart: unless-stopped
     env_file: ./.env
+    privileged: true
+    tty: true
     environment:
       - MYSQL_DATABASE=achatdb
+      - MYSQL_ROOT_PASSWORD=
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
     ports:
       - 8089:8089
