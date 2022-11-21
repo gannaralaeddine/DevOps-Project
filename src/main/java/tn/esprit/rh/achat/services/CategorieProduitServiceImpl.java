@@ -28,13 +28,13 @@ public class CategorieProduitServiceImpl implements ICategorieProduitService {
 	@Override
 	public void deleteCategorieProduit(Long id) {
 		categorieProduitRepository.deleteById(id);
-		
+
 	}
 
 	@Override
 	public CategorieProduit updateCategorieProduit(CategorieProduit cp) {
-		categorieProduitRepository.save(cp);
-		return cp;
+
+		return categorieProduitRepository.save(cp);
 	}
 
 	@Override
